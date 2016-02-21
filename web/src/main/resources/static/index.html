@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello WebSocket</title>
+    <script type="text/javascript">
+        var socket = new WebSocket("ws://localhost:2222/websocket");
+        function waitForSocketConnection(socket, callback) {
+            setTimeout(
+                    function () {
+                        if (socket.readyState === 1) {
+                            if (callback !== undefined) {
+                                callback();
+                            }
+
+                        } else {
+                            waitForSocketConnection(socket, callback);
+                        }
+                    }, 5);
+        }
+        function connect() {
+            waitForSocketConnection(socket, function () {
+                socket.send("lalalala");
+            });
+        }
+        socket.onmessage = function (message) {
+            console.info(message);
+        };
+    </script>
+</head>
+<body>
+<div>
+    <div>
+        <button id="connect" onclick="connect();">Connect</button>
+        <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+    </div>
+</div>
+</body>
+</html>

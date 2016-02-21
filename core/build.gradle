@@ -1,0 +1,31 @@
+group 'univ.kiev.ua'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+configurations {
+    provided.all*.exclude group: 'javax.servlet'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '1.2.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.2.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '1.2.4.RELEASE'
+
+    compile group: 'org.apache.commons', name: 'commons-compress', version: '1.10'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.6'
+
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter', version: '1.0.3.RELEASE'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka-server', version: '1.0.3.RELEASE'
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+}
