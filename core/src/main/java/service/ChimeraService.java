@@ -1,7 +1,7 @@
 package service;
 
 import constants.Types;
-import core.ChimeraFilter;
+import core.ChimeraParser;
 import core.ChimeraReader;
 import core.InputData;
 import org.springframework.context.annotation.Scope;
@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
 public class ChimeraService {
 
     private ChimeraReader reader;
-    private ChimeraFilter filter;
+    private ChimeraParser parser;
 
     public void init(InputData inputData) {
         this.reader = new ChimeraReader(inputData);
-        this.filter = new ChimeraFilter(Types.getEnum(inputData.getType()));
+        this.parser = new ChimeraParser(Types.getEnum(inputData.getType()), inputData.getCompress());
     }
 
     public boolean hasNext() {
@@ -27,6 +27,6 @@ public class ChimeraService {
     }
 
     public String next() {
-        return filter.process(reader.next());
+        return parser.process(reader.next());
     }
 }

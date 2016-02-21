@@ -1,7 +1,7 @@
 package core;
 
+import constants.Compress;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -14,5 +14,6 @@ public class InputData {
     private String type;
     private Integer from;
     private Integer to;
+    private Compress compress;
 }
 

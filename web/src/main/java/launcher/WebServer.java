@@ -9,11 +9,15 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 /**
  * Created by gleb on 2/12/16.
  */
-@SpringBootApplication(scanBasePackages = "websocket")
+@SpringBootApplication(scanBasePackages = {"websocket", "service"})
 @EnableDiscoveryClient
 public class WebServer {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            System.setProperty("spring.application.name", args[0].toLowerCase());
+            System.setProperty("server.port", args[1]);
+        }
         SpringApplication.run(WebServer.class, args);
     }
 
